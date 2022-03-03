@@ -243,7 +243,5 @@ int main(){
         cout << endl;
     }
 
-    cout << "Al meter todo en un vector tipo Noticia e invocar al método getInfo() se invoca al de la clase madre, no al de cada clase hija." <<  endl;
-    cout << "No sé por qué sucede si al invocar manualmente el método getInfo() de cada clase hija se llama adecuadamente. En el codigo quedan las pruebas manueales de comprobacion." << endl;
     return 0;
 }
