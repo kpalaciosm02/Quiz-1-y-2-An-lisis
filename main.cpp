@@ -179,8 +179,7 @@ class NoticiaDigital : public Noticia{
         void getInfo(){
             cout << "Noticia: " << this->getTitulo() << endl << "Fecha: " << this->getFecha() << endl << "Autor: " << this->getAutor() << endl;
             cout << "Lista de archivos multimedia: " << endl;
-            for (int i = 0; i < listaMedia.size(); i++){
-                Media tmp = listaMedia[i];
+            for (Media &tmp : listaMedia){
                 tmp.getInfo();
             }
         }
@@ -215,23 +214,36 @@ class NoticiaRadio : public Noticia{
 };
 
 int main(){
-    cout << "Noticia:" << endl;
+    //cout << "Noticia:" << endl;
     Noticia noticia1("Muerte de actor","12 de abril 2021","Kenneth Palacios");
-    noticia1.getInfo();
-    cout << endl << "NoticiaPaper:" << endl;
+    //noticia1.getInfo();
+    //cout << endl << "NoticiaPaper:" << endl;
     NoticiaPaper noticiaPaper1("Accidente de transito", "02 de marzo 2022", "Hannah Schwarz","www.foto.com");
-    noticiaPaper1.getInfo();
-    cout << endl << "NoticiaDigital:" << endl;
+    //noticiaPaper1.getInfo();
+    //cout << endl << "NoticiaDigital:" << endl;
     MediaAudio media1("Bombardeo","3:00","mp3");
     MediaFoto media2("Foto de un pueblo Ucraniano","jpg");
     MediaVideo media3("Video","0:43","mov");
     cout << endl << endl;
     media1.getInfo();
     NoticiaDigital noticiaDigital1("Guerra en Ucrania", "28 de febrero 2022", "Richard Rodriguez", {media1,media2,media3});
-    noticiaDigital1.getInfo();
-    cout << endl << "NoticiaRadio:" << endl;
+    //noticiaDigital1.getInfo();
+    //cout << endl << "NoticiaRadio:" << endl;
     NoticiaRadio noticiaRadio1("Empleabilidad en Costa Rica","02 de marzo 2022","Sabrina Guilarte", "www.audio.com");
-    noticiaRadio1.getInfo();
+    //noticiaRadio1.getInfo();
 
+    vector<Noticia> vec1 = {};
+    vec1.push_back(noticia1);
+    vec1.push_back(noticiaDigital1);
+    vec1.push_back(noticiaPaper1);
+    vec1.push_back(noticiaRadio1);
+
+    for (Noticia &m : vec1){
+        m.getInfo();
+        cout << endl;
+    }
+
+    cout << "Al meter todo en un vector tipo Noticia e invocar al método getInfo() se invoca al de la clase madre, no al de cada clase hija." <<  endl;
+    cout << "No sé por qué sucede si al invocar manualmente el método getInfo() de cada clase hija se llama adecuadamente. En el codigo quedan las pruebas manueales de comprobacion." << endl;
     return 0;
 }
